@@ -1,0 +1,132 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  USER
+  RESPONSIBLE
+  ADMIN
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  EXPIRED
+}
+
+enum PaymentMethod {
+  INSTAPAY
+  CASH
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  phone     String
+  whatsapp  String?
+  password  String
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  bookings  Booking[]
+  events    Event[]
+  resetToken    String?
+resetTokenExp DateTime?
+}
+
+model Event {
+  id                 String   @id @default(uuid())
+  title              String
+  description        String
+  descriptionContent Json?
+  date               DateTime
+  location           String
+  image              String?
+  rows               Int
+  cols               Int
+  price              Float
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  createdBy   User   @relation(fields: [createdById], references: [id])
+  createdById String
+
+  seats    Seat[]
+  bookings Booking[]
+}
+
+model Seat {
+  id      String     @id @default(uuid())
+  row     Int
+  col     Int
+  status  SeatStatus @default(AVAILABLE)
+
+  event   Event  @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  eventId String
+
+  bookings BookingSeat[]
+
+  @@unique([eventId, row, col])
+}
+
+enum SeatStatus {
+  AVAILABLE
+  ON_HOLD
+  RESERVED
+}
+
+model Booking {
+  id            String        @id @default(uuid())
+  status        BookingStatus @default(PENDING)
+  paymentMethod PaymentMethod?
+  totalPrice    Float
+  holdExpiresAt DateTime
+  reminderSent  Boolean       @default(false)  
+  guestEmail    String?
+  guestPhone    String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  user    User?   @relation(fields: [userId], references: [id])
+  userId  String?
+
+  event   Event  @relation(fields: [eventId], references: [id])
+  eventId String
+
+  seats BookingSeat[]
+}
+
+model BookingSeat {
+  booking   Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  bookingId String
+  seat      Seat    @relation(fields: [seatId], references: [id])
+  seatId    String
+
+  @@id([bookingId, seatId])
+}
+
+model Sponsor {
+  id        String   @id @default(uuid())
+  name      String
+  logoUrl   String
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model Settings {
+  id            String  @id @default(uuid())
+  instapayLink  String?
+  cashPhone     String?
+  churchName    String  @default("St. George Church Events")
+  contactEmail  String?
+  contactPhone  String?
+  heroImageUrl  String?
+}

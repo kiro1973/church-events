@@ -1,0 +1,82 @@
+{
+  "nav": {
+    "home": "Home",
+    "events": "Events",
+    "login": "Login",
+    "register": "Register",
+    "myBookings": "My Bookings",
+    "dashboard": "Dashboard",
+    "logout": "Logout"
+  },
+  "landing": {
+    "hero": "Welcome to St. George Church Events",
+    "subtitle": "Book your seats for our upcoming events",
+    "viewEvents": "View Events",
+    "upcomingEvents": "Upcoming Events",
+    "sponsors": "Our Sponsors"
+  },
+  "events": {
+    "bookNow": "Book Now",
+    "seats": "seats available",
+    "price": "Price per seat",
+    "location": "Location",
+    "date": "Date"
+  },
+  "booking": {
+    "selectSeats": "Select Your Seats",
+    "legend": {
+      "available": "Available",
+      "onHold": "On Hold",
+      "reserved": "Reserved",
+      "selected": "Selected"
+    },
+    "continueToPayment": "Continue",
+    "guestOrLogin": "How would you like to proceed?",
+    "continueAsGuest": "Continue as Guest",
+    "loginToContinue": "Login to Continue",
+    "paymentInfo": "Payment Information",
+    "instapay": "Pay via Instapay",
+    "cash": "Pay via Cash",
+    "confirmBooking": "Confirm Booking",
+    "holdWarning": "Your seats will be held until end of next day",
+    "confirmation": "Booking Confirmed!",
+    "bookingId": "Your Booking ID"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "name": "Full Name",
+    "phone": "Phone Number",
+    "whatsapp": "WhatsApp Number",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "forgotPassword": "Forgot Password?"
+  },
+  "dashboard": {
+    "bookings": "Booking Requests",
+    "sponsors": "Sponsors",
+    "settings": "Settings",
+    "users": "Manage Users",
+    "confirm": "Confirm Payment",
+    "cancel": "Cancel Booking",
+    "paymentSummary": "Payment Summary",
+    "instapay": "Instapay",
+    "cash": "Cash",
+    "pending": "Pending",
+    "total": "Total Confirmed"
+  },
+  "common": {
+    "loading": "Loading...",
+    "edit": "Edit",
+    "error": "Something went wrong",
+    "eventNotFound": "Event not found",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "back": "Back"
+  }
+}
